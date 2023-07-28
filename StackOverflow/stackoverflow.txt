@@ -1,0 +1,943 @@
+Control esp32 via keyboard keys
+https://stackoverflow.com/questions/76785400/control-esp32-via-keyboard-keys
+
+                
+I'm making a project in which I have to control a mini car and get sensor information via bluetooth. I'd like to be able to control the mini car with the computers keyboard (w,a,s,d), but I was not able to find a library that could help with that, like the "keyboard" library does ij python for example
+Ex.
+import keyboard
+
+# when w is pressed, the car goes forward
+
+If (keyboard.is_pressed("w"):
+
+    Forward()
+
+The "keyboard" library in arduino does not seem to work the same way. And I didn'tfind any other libraries nor tutorials about it online.
+Does anyone know a way to make it work?
+Any help is appreciated
+Thanks ; )
+    
+How use a Blob Container folder in Azure ML Notebook
+https://stackoverflow.com/questions/76785405/how-use-a-blob-container-folder-in-azure-ml-notebook
+
+                
+For a Deep Learning (Computer Vision based), I have imported a folder in an Azure Blob Container. The folder itself contains two different folders "Train" and "Test". In both the "Train" and "Test" folders I have a set of different folders according to the 9 classes of images I would like to classify.
+Now, I would like to train a Deep Learning algorithm to classify to obtain a model able to classify those 9 classes and I want to use Azure Machine Learning Notebook- with the proper compute instance.
+Now, when I try recalling the folder path in Blob Storage with the code:
+ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
+   r'path', #here I have to specify the path 
+   shuffle =True,
+   image_size =(img_height,img_width)  , 
+   batch_size = batch_size             # 32)
+
+I have to specify the path. I use a lot of different approaches, passing directly the path the services providing me but none of them work:
+
+take the link directly from blob storage and pass it.
+Create a Azure datastore a pass the Folder_URI.
+Create a Azure data asset and pass it
+
+The error is for instance:
+ Could not find directory azureml://subscriptions/ data asset/images/Train
+
+How can I pass the proper link to the folder to read the data and start training the algorithm in Azure Machine Learning Notebook?
+    
+After Login we want to redirect the user to dashboard page but it redirect to home page
+https://stackoverflow.com/questions/76785404/after-login-we-want-to-redirect-the-user-to-dashboard-page-but-it-redirect-to-ho
+
+                
+I am trying to redirect the user to "dashboard/setting" but  when i login it open home "/" page, I use navigate("/dashboard/setting") in my login code. but it not happed as i aspected
+export function login(email, password, navigate) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
+
+    try {
+
+      const response = await apiConnector("POST", LOGIN_API, {
+        email,
+        password,
+      })
+
+      console.log("LOGIN API RESPONSE", response.data)
+      toast.success(`${response.data.msg}`)
+      dispatch(setToken(response.data.result.token))
+      dispatch(setUser(response.data.result))
+      localStorage.setItem("token", JSON.stringify(response.data.result.token))
+      localStorage.setItem("studyuser", JSON.stringify(response.data.result))
+      navigate("/dashboard/settings")
+
+    } catch (error) {
+      console.log("LOGIN API ERROR", error?.response?.data);
+      toast.error(`${error?.response?.data.msg}`);
+    }
+    dispatch(setLoading(false))
+    toast.dismiss(toastId)
+  }
+}
+
+In console it show A soft navigation has been detected: http://localhost:3000/dashboard/settings
+but it not navigate to dashbpard/setting it open the home page.
+
+    
+Can someone fix the Cache problem in CodeIgniter or how to set cache in Codeigniter?
+https://stackoverflow.com/questions/76785398/can-someone-fix-the-cache-problem-in-codeigniter-or-how-to-set-cache-in-codeigni
+
+                
+I added this in my index funtion
+$this->output->set_cache_header('Cache-Control: no-cache, must-revalidate');
+But an error was occured.
+An uncaught Exception was encountered
+Type: ArgumentCountError
+Message: Too few arguments to function CI_Output::set_cache_header(), 1 passed in C:\xampp\htdocs\lsc\application\controllers\Home.php on line 24 and exactly 2 expected
+Filename: C:\xampp\htdocs\lsc\system\core\Output.php
+Line Number: 792
+Backtrace:
+File: C:\xampp\htdocs\lsc\application\controllers\Home.php
+Line: 24
+Function: set_cache_header
+File: C:\xampp\htdocs\lsc\index.php
+Line: 315
+Function: require_once
+Can someone tell me how to use this?
+I want to set the cache for my website and tell me how to use the cache in website
+    
+Not able to use pod dependency in Swift static library
+https://stackoverflow.com/questions/76785397/not-able-to-use-pod-dependency-in-swift-static-library
+
+                
+I have built a static library in Swift, which internally uses Alamofire for network connections. I have used Pods to include this dependency and my idea is that host app (that will use my library) will add Alamofire dependency in itself and my static library will use the same.
+But, I am facing issue while using this library inside other app. It gives me version mismatch error.
+Any help in this regard will be helpful.
+    
+Javascript not running in a synchronous fashion
+https://stackoverflow.com/questions/76785401/javascript-not-running-in-a-synchronous-fashion
+
+                
+I have two functions that are inserting data into the DB. Function updateScratcherGameData inserts the game name and id into the game table. Then calls the second function, updateScratcherRowData, which inserts the raw data I scraped into another table scratcher_data. Function updateScratcherRowData needs to assign a foreign key that it gets from the game table. When I run the functions separately, they work as intended. But when I run them together, I get the following error:
+TypeError: Cannot read properties of undefined (reading 'game_id')
+It appears updateScratcherRowData is running before updateScratcherGameData inserts the game_id. Can someone help me figure out what I am doing wrong?
+function updateScratcherGameData(cleanData){
+  
+  // Insert into database games that do not exist yet
+  uniqueGameData.map(e=>{
+    const insertGameData = `INSERT INTO game (name,scratcher_lotto_id,gametype_id,active) VALUES ('${e["name"]}',${e["scratcher_id"]},1,1);`;
+
+    connection.query(`SELECT name FROM game WHERE name='${e["name"]}';`, (err,rows)=>{  
+      if (err){
+        throw err;
+      }
+        if(rows.length===0){
+        connection.query(insertGameData)
+        console.log('insertion into game table done!');   
+        }     
+      }
+    )})
+    updateScratcherRowData(cleanData)
+
+}
+
+function updateScratcherRowData(cleanData){
+
+  cleanData.map(e=>{
+    connection.query(`SELECT game_id FROM game WHERE name='${e["name"]}' AND scratcher_lotto_id='${e["scratcher_id"]}';`, (err,rows)=>{  
+      const insertScratcherData = `INSERT INTO scratcher_data (scrape_date,game_id,prize,odds,remaining_prize,total_prize) VALUES ((TIMESTAMP(NOW())),${rows[0]["game_id"]},${e["prize"]},${e["odds"]},${e["tickets_left"]},${e["tickets_remaining"]});`
+
+      if (err){
+        console.log('problem updating scratcher row data');
+        throw err;
+      }
+        connection.query(insertScratcherData)
+      }
+    )})
+  }
+
+I tried running the functions separately and they work. Together, they do not. I tried changing where I call the updateScratcherRowData function and still get the same error
+    
+convert XGBRegressor( booster='gblinear', objective='reg:squarederror') to ONNX returns error
+https://stackoverflow.com/questions/76785399/convert-xgbregressor-booster-gblinear-objective-regsquarederror-to-onnx
+
+                
+i was working on a simple 3d regressor model and i used the following parameters
+#my code extract:
+from mlprodict.onnxrt import OnnxInference
+import numpy
+import onnxruntime as onnx_RT
+from sklearn.datasets import load_iris, load_diabetes, make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from xgboost import XGBClassifier, XGBRegressor, DMatrix, train as train_xgb
+from skl2onnx.common.data_types import FloatTensorType
+from skl2onnx import convert_sklearn, to_onnx, update_registered_converter
+from skl2onnx.common.shape_calculator import (
+    calculate_linear_classifier_output_shapes,
+    calculate_linear_regressor_output_shapes)
+from onnxmltools.convert.xgboost.operator_converters.XGBoost import (
+    convert_xgboost)
+from onnxmltools.convert import convert_xgboost as convert_xgboost_booster
+
+data = load_iris()
+X = data.data[:, :2]
+y = data.target
+
+ind = numpy.arange(X.shape[0])
+numpy.random.shuffle(ind)
+X = X[ind, :].copy()
+y = y[ind].copy()
+
+models_01 = XGBRegressor(  booster='gblinear', objective='reg:squarederror')
+models_01.fit(X, y)
+
+**#Register the converter for XGBRegressor**
+    update_registered_converter(
+        XGBRegressor, 'XGBoostXGBRegressor',
+        calculate_linear_regressor_output_shapes, convert_xgboost,
+        options={'nocl': [True, True], 'zipmap': [False, False, 'columns']}
+        )
+
+**#convert to ONNX**
+  onnx_result = convert_sklearn( models_01, "My_simple_XGBRegressor",
+      [('input', FloatTensorType([None, X.shape[1]  ]))],
+      target_opset={'': 12, 'ai.onnx.ml': 2}, options={'zipmap': False},
+      )
+
+I then tried to convert to load an inference session but it always returned the following error.....
+#test the ONNX model
+onnx_model_inference = onnx_RT.InferenceSession(  onnx_result.SerializeToString()  )    #throws an error
+#the error
+InvalidGraph: [ONNXRuntimeError] : 10 : INVALID_GRAPH : Load model from models_01.onnx failed: This is an invalid model. In Node, ("TreeEnsembleRegressor", TreeEnsembleRegressor, "ai.onnx.ml", -1) : ("input": tensor(float),) -> ("variable": tensor(float),) , Error Attribute 'nodes_falsenodeids' is expected to have field 'ints'
+#the error
+please help... Thank you.
+expected results is an error free result of the onnx model.
+#test the ONNX model
+onnx_model_inference = onnx_RT.InferenceSession(  onnx_result.SerializeToString()  )    #throws NO ERROR
+    
+Rocksdb compaction is very slow
+https://stackoverflow.com/questions/76785411/rocksdb-compaction-is-very-slow
+
+                
+I am doing rocksdb compaction using compactfiles api. I checked the compaction stats, the read and write is very slow.. I am seeing the read write and write rate to be around 10MBps. which is very low.. Because my flushes are happening at rate around 330MBps.. I have set the compaction readahead size to 1MB in rocksdb options...   I have set the block cache to 10GB..  I am compacting 32 files of each size 32 MB. Do need to set any other options to increase the compaction speed?
+Following are the logs containing the compression stats.
+compacted to: files[1 0 0 0 0 0 0] max score 52.38, MB/sec: 10.9 rd, 10.9 wr, level 0, files in(0, 32) out(1) MB in(0.0, 980.9) out(980.9), read-write-amplify(0.0) write-amplify(0.0) OK, records in: 986848, records dropped: 0 output_compression: NoCompression
+(Original Log Time 2023/07/28-06:31:17.610339) EVENT_LOG_v1 {"time_micros": 1690525877610328, "job": 0, "event": "compaction_finished", "compaction_time_micros": 94778569, "compaction_time_cpu_micros": 0, "output_level": 0, "num_output_files": 1, "total_output_size": 1028547792, "num_input_records": 986848, "num_output_records": 986848, "num_subcompactions": 1, "output_compression": "NoCompression", "num_single_delete_mismatches": 0, "num_single_delete_fallthrough": 0, "lsm_state": [1, 0, 0, 0, 0, 0, 0]}
+    
+Large binary with C++ on embedded bare-metal system (Xilinx Zync ARM A53)
+https://stackoverflow.com/questions/76785408/large-binary-with-c-on-embedded-bare-metal-system-xilinx-zync-arm-a53
+
+                
+I have an application implemented in C++ that is supposed to run on an A53 bare-metal system. My problem is that the resulting binary is very large. When I look at the content per nm I see why - there are a lot of standard C++ functions linked that I would not expect to be needed, e.g. for exception handling, RTTI and dynamic memory management. I don't use any of these.
+I found this description which says that these things should be disabled with the appropriate compiler flags, e.g. -fno-exceptions, -fno-non-call-exceptions, and -fno-rtti.
+Unfortunately, these have no effect at all on me - the binary keeps the same size and the said symbols are still there.
+What can I do to get rid of this ballast?
+    
+ORA-00955 error with django migrate but no tables in Oracle database
+https://stackoverflow.com/questions/76785409/ora-00955-error-with-django-migrate-but-no-tables-in-oracle-database
+
+                
+I'm trying to deploy a Django application on an Apache webserver and Oracle DB.  When I get to trying to create the database tables using manage.py migrate  I get an error ORA-00955: name is already used by an existing object.  It doesn't tell me what the object is (which is frustrating).  Looking at the database I don't have any tables in my schema.
+I have run migrate more than once due to an earlier failure, but there's nothing there that I can see (I'm looking at the database in DBeaver).
+I've tried SELECT table_name FROM all_tables WHERE owner = 'MYUSERNAME'; but that doesn't return anything.
+Is there some way to find out what the blocking object is?  Is there some way to make migrate force its way through?  What am I missing that means I can't see the tables that the database sees?
+    
+how to access the variable defined in Background section to setup scenario in Karate feature
+https://stackoverflow.com/questions/76785407/how-to-access-the-variable-defined-in-background-section-to-setup-scenario-in-ka
+
+                
+Feature: API Testing feature
+  Background:
+    * configure logPrettyRequest = true
+    * configure logPrettyResponse = true
+    * def data = call read('classpath:Features/GetData.feature')
+    * print data // prints the data as expected.
+
+  @setup
+  Scenario: get Data from 
+   
+    * print "data ==>  ",data
+
+    Getting Below error when printing data variable in setup scenario.
+
+    org.graalvm.polyglot.PolyglotException: ReferenceError: "data" is not defined
+
+is this feature supported by karate?
+    
+Namespace not specified. React native 0.72.3
+https://stackoverflow.com/questions/76785419/namespace-not-specified-react-native-0-72-3
+
+                
+Namespace not specified. Please specify a namespace in the module's build.gradle file like so: android { namespace 'com.example.namespace' } If the package attribute is specified in the source AndroidManifest.xml, it can be migrated automatically to the namespace value in the build.gradle file using the AGP Upgrade Assistant
+    
+The issue of reading the case of quartz tables after integrating quartz and springboot
+https://stackoverflow.com/questions/76785415/the-issue-of-reading-the-case-of-quartz-tables-after-integrating-quartz-and-spri
+
+                
+When deploying the Spring Boot integrated Quratz framework in Linux, MySQL is not case sensitive in Windows, and Linux is case sensitive, resulting in the inability to find Quratz related tables such as (QRTZ_LOCKS). How to fix this bug without modifying the MySQL configuration file
+Change the table to uppercase,
+    
+Microsoft upgrade assistance tool : Can I use this tool to upgrade .net core web api 2.1 into .net core 6?
+https://stackoverflow.com/questions/76785414/microsoft-upgrade-assistance-tool-can-i-use-this-tool-to-upgrade-net-core-web
+
+                
+My project is API build with .net core 2.1. I need to convert into .net core 6 using microsoft upgrade assistance tool. I am not sure I can do this or not.
+Also, after upgrading project using this tool, Shall I required to do any manually code changes in Programme.cs and Startup.cs?
+    
+How to digitally sign the Application.exe during publish in MAUI?
+https://stackoverflow.com/questions/76785377/how-to-digitally-sign-the-application-exe-during-publish-in-maui
+
+                
+We want to publish the MAUI application after digitally signing the Application main .DLL and .EXE Files using DigiCert Hardware token certificate.
+Steps we followed is:
+
+Re-Build the Project in Release Mode
+Digitally Sign the respective file of DLL and Exe present in Bin and Obj folder through DigiCert Hardware Token
+Publish the project in Release Mode
+During publish it has option to add Certificate, so we add the DigiCert respective certificate (so that it signs the msix file after publishing).
+
+After Step 4 the Package (MSIX file) is successfully created with Digital Signature and ready to install.
+Post installation, the Application files are present in C:\Programs Files\WindowsApps folder, over here the Digital signature is not found in EXE File i.e. Digital signature from EXE file is gets removed but digital signature is present in DLL file.
+We tried with POST BUILD events also, before publishing the Digital signature is present in EXE and DLL, but after publishing the Digital signature gets removed from EXE.
+Please provide your suggestions on this.
+    
+What Do I do on configuration
+https://stackoverflow.com/questions/76785379/what-do-i-do-on-configuration
+
+                
+I am running java for  loops 
+it is showing :
+and when I am clicking on Run it is showing : 
+I am trying to run it, but it is showing configuration.What do I do on configaration
+    
+How to change display orientation from horizontal to vertical programmatically and rotate camera view accordingly?
+https://stackoverflow.com/questions/76785378/how-to-change-display-orientation-from-horizontal-to-vertical-programmatically-a
+
+                
+I have a project where I need to dynamically change the display orientation from horizontal to vertical programmatically. The goal is to switch the display's view.
+Additionally, I want to incorporate a camera feed into the application and ensure that the camera view is also rotated to match the display orientation. So, when the display is in vertical view, the camera feed should also be vertical.
+Could someone please guide me on how to achieve both the display orientation change and the camera view rotation programmatically? Any help with code examples or references to relevant APIs and functions would be highly appreciated.
+    
+What are the steps to call oracle database connection from appsetting
+https://stackoverflow.com/questions/76785417/what-are-the-steps-to-call-oracle-database-connection-from-appsetting
+
+                
+I have my connection in appsetting
+I have dependence injection in the repository.
+system.invalidoperationexception: oracleconnection.connectionstring is invalid , I get this error when trying call the connection string from getconnectionstring();
+What are the steps to call the connectoin string from appsetting
+The connection string works if I put it directly in the repository and run the code.
+    
+Ruby on rails controller methods issue with Datatables
+https://stackoverflow.com/questions/76785384/ruby-on-rails-controller-methods-issue-with-datatables
+
+                
+So here I try to add organisation_id column to the dataTable, in order to do that I need to modify this existing index method. here's the code
+def index
+    authorize :upload
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json do
+        @uploads =
+      policy_scope(add_sort_and_direction(collection: Upload.all,
+                                          default_sort: 'updated_at',
+                                          default_direction: 'desc'))
+      .searching(query: params[:query])
+      .page(params[:page])
+      .per(params[:length])
+        @csv_file_validation_errors_hash =
+          CsvFileValidationError.where(upload_id: @uploads.pluck(:id))
+                                .group(:upload_id)
+                                .count
+      end
+    end
+  end
+
+I made some changes and modified it like this
+@uploads =
+  policy_scope(Upload.includes(:organisation))
+    .searching(query: params[:query])
+    .page(params[:page])
+    .per(params[:length])
+
+The 'organisation_id'column already exist in MySQL table, but it won't recognize by .js file that includes dataTables, I already checked if the @uploads return all values including org id and It's verified. Here I added org id in uploads.js file,
+var $uploadsTable = $("#uploads_list_table").DataTable({
+  // ... other options ...
+
+  columns: [
+    // ... other columns ...
+    { data: "organisation_id" }, // Add the organisation_id column here
+  ],
+
+  // ... other options ...
+});
+
+DataTables warning: table id=uploads_list_table - Requested unknown parameter 'organisation_id' for row 0, column 6. For more information about this error, please see http://datatables.net/tn/4
+    
+Dynamically setting mode based on icon
+https://stackoverflow.com/questions/76785394/dynamically-setting-mode-based-on-icon
+
+                
+Using unocss, I need to mask most of my icons so I am enabling it in settings. Is there any way to disable masking for few icons?
+// uno.config.css
+presetIcons({
+            collections: {
+                myicons: FileSystemIconLoader(
+                    './src/icons/',
+                    (svg) => svg
+                ),
+                myiconsorginal: FileSystemIconLoader(
+                    './src/icons/',
+                    (svg) => svg
+                ),
+            },
+            mode: 'mask',
+        }),
+
+So if its class="i-myicons-star" it should show a masked icon (which it is showing).
+But if its class="i-myiconsorginal-star" then I want to show the original start which have some custom colors.
+    
+I've set the button to disable after the particular function but it does not execute when I click on im butron
+https://stackoverflow.com/questions/76785388/ive-set-the-button-to-disable-after-the-particular-function-but-it-does-not-exe
+
+                
+I got multiple buttons and after a particular function is run, I wanted the div element to be set disabled until the page is reloaded. I tried making the button disable too but that didn't work either
+ <div class='container'>
+        <div  class = 'btn' id = 'rock'>
+            <button ><img src="./images/rock-svgrepo-com.svg"></button>
+        </div>
+
+        <div class = 'btn' id = 'paper'>
+            <button > <img src="./images/paper-plane-svgrepo-com.svg"></button>
+        </div>
+
+        <div class= 'btn'  id = 'scissors'>
+            <button> <img src="./images/scissors-svgrepo-com.svg"></button>
+        </div>
+    </div>
+
+I have used the specific javascript to disable the div
+function endGame(){
+    const buttons = document.querySelectorAll('.btn')
+    buttons.disabled = true;
+    console.log(buttons);
+};
+
+    
+How do you make a ray reflection like a ping-pong ball? Unity
+https://stackoverflow.com/questions/76785382/how-do-you-make-a-ray-reflection-like-a-ping-pong-ball-unity
+
+                
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Test : MonoBehaviour
+{
+[SerializeField] private Vector2 _vector;
+[SerializeField] private int _reflectionCount;
+[SerializeField] private float _distance;
+
+private void Update()
+{
+    Vector2[] points = GetReflectionPoints(transform.position, _vector, _reflectionCount, _distance, Physics2D.AllLayers);
+
+    for (int i = 0; i < points.Length; i++)
+    {
+        if (i + 1 == points.Length)
+            break;
+
+        Debug.DrawLine(points[i], points[i + 1], Color.red);
+    }
+}
+
+public static Vector2[] GetReflectionPoints(Vector2 currentPosition, Vector2 vector, int reflectionCount, float distance, int layerMask)
+{
+    List<Vector2> points = new(reflectionCount);
+
+    vector.Normalize();
+    points.Add(currentPosition);
+    
+    for (int i = 0; i < reflectionCount; i++)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(currentPosition, vector, distance, layerMask);
+        points.Add(hit.point);
+        vector = Vector2.Reflect(vector, -hit.normal);
+    }
+
+    return points.ToArray();
+}
+
+}
+Here's my code, and here's the result:
+
+The red color is the trajectory I got, and the green is the trajectory I want. I watched many videos on this topic and all of them used either Rigidbody2D.velocity or loops. Is there any other way to do this (for example, through a dot product)?
+    
+Jimp returning wrong mime type
+https://stackoverflow.com/questions/76785390/jimp-returning-wrong-mime-type
+
+                
+I wrote a bitmap parser that should return jimp object (image)
+and im getting error "Unsupported MIME type: audio/mpeg"
+Here's the code:
+var mid = Buffer.from(mapbitmap, 'base64');
+var image2 = await Jimp.read(mid);
+
+the mapbitmap is the bitmap that im trying to parse,
+it's not empty or something.
+Detailed error:
+Error: Unsupported MIME type: audio/mpeg
+    at Jimp.throwError (D:\FrostX\Develop\javascript\sandbox\node_modules\@jimp\utils\dist\index.js:21:13)
+    at Jimp.parseBitmap (D:\FrostX\Develop\javascript\sandbox\node_modules\@jimp\core\dist\utils\image-bitmap.js:159:32) {
+  methodName: 'constructor'
+}
+
+I don't know what to do about this,
+I just started learning javascript yesterday
+and basically don't know how to fix this,
+It should be returning image instead of audio.
+    
+How to get local variable value from Invoke-command -Asjob?
+https://stackoverflow.com/questions/76785389/how-to-get-local-variable-value-from-invoke-command-asjob
+
+                
+I want to run [System.Net.Dns]::GetHostAddresses("mail") on remote computers and write it.
+Foreach($PCName in $PCNameArray) {
+    $arrayJobs += Invoke-Command -Credential $cred -scriptblock { 
+                param (
+                    [String]$ip                )
+                $IPs = [System.Net.Dns]::GetHostAddresses("mail")
+                $ip = $ips[0]
+    } -ComputerName $PCName -AsJob -ArgumentList $ip
+}
+
+Wait-Job $arrayJobs
+
+$ResultArray=[System.Collections.ArrayList]@()
+
+foreach ($job in $arrayJobs) {
+    if ($job.State -eq 'Completed') {
+        $ResultArray += Receive-Job $job
+    } 
+    Stop-Job $job
+}
+
+$ResultArray | Select PsComputerName,ip | Export-Csv $OutputFile -NoTypeInformation -Delimiter ';' -Encoding UTF8
+
+How can get $ip value from inside Invoke-Command for all jobs?
+    
+Git rebase a branch from a branch that's also been rebased
+https://stackoverflow.com/questions/76785391/git-rebase-a-branch-from-a-branch-thats-also-been-rebased
+
+                
+Let's say I have this situation where branch1 was created from master. After a few commits on branch1, I also created another branch off of that called branch2. After this, someone else committed (D) in master. Now I want to rebase branch1 with master. But what about branch2 since branch1's hashes have been rewritten and now branch2 is lost.
+master:  A - B - C - D
+                  \
+branch1:           E - F
+                        \
+branch2:                 G - H             
+
+
+After rebasing branch1 on top of master, branch2 is lost because rebasing rewrites the hash of branch 1.
+master:   A - B - C - D
+                       \
+branch1:                E - F
+
+branch2:                 G - H             
+
+
+Is there a proper way to use git rebase branch 2 on top of branch1 again in a situation like this?
+    
+When using yahoo_fin.stock to get data
+https://stackoverflow.com/questions/76785392/when-using-yahoo-fin-stock-to-get-data
+
+                
+!pip install pandas_datareader
+!pip install yfinance
+!pip install yahoo_fin
+import yfinance as yf
+from yahoo_fin.stock_info import get_data
+import yahoo_fin.stock_info as si
+for i in si.tickers_sp500():
+print(i)
+and I got
+
+
+
+
+
+
+
+
+
+
+
+--
+But this one works well..
+for i in si.tickers_nasdaq():
+print(i)
+why does this happen?
+I want the result like
+AACG
+AACI
+AACIU
+AACIW
+AADI
+    
+HSM 9K- Change password of LMK component cards , change password for card with component 2 using component 1 and 3
+https://stackoverflow.com/questions/76785354/hsm-9k-change-password-of-lmk-component-cards-change-password-for-card-with-c
+
+                
+HSM 9k production device power failed accidentally, I tried loading LMK onto the new HSM 9K. It reqires three components(comp 1,2 and 3) with password. Since the configiration was done 10 years ago, the password for component 2 is lost. How can i change component 2 password using component 1 and component 3. Or if there is any other work around solution. It is very urgent since it's the production device.
+I tried to load the the components by uing authorization card for component 2. it accepted but the combined KCV at the end appears diffrent from the previous one.
+    
+Seq2Seq model- Confusing about the dimension of Seq2Seq model
+https://stackoverflow.com/questions/76785365/seq2seq-model-confusing-about-the-dimension-of-seq2seq-model
+
+                
+I am new to Seq2Seq and hope ot find a proper guildances, advices.
+I want to ask about my understanding about the architecture as well as the data dimension after each layer.
+
+I am doing a Project from an online course so I can not give the material but I got my Project notebook on Github
+
+Back to the question, suppose I have a Seq2Seq model as below:
+Seq2Seq( (encoder): Encoder( (embedding): Embedding(5678, 512) (lstm): LSTM(512, 512, batch_first=True) ) (decoder): Decoder( (embedding): Embedding(4297, 512) (lstm): LSTM(512, 512, batch_first=True) (fc): Linear(in_features=512, out_features=4297, bias=True) (dropout): Dropout(p=0.2, inplace=False) (softmax): LogSoftmax(dim=1) ) )
+Where 5678 is source_vocab size, 512 is desired embedding size, 4297 is target_vocab size. You can check my Encoder, Decoder, Seq2Seq class as below:
+device= torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(device)
+
+class Encoder(nn.Module):
+    
+    def __init__(self, input_size, hidden_size):
+        
+        super(Encoder, self).__init__()
+        
+        self.input_size= input_size
+        self.hidden_size= hidden_size
+        
+        self.embedding= nn.Embedding(self.input_size, self.hidden_size)
+        self.lstm= nn.LSTM(self.hidden_size, self.hidden_size, batch_first= True)
+
+    def forward(self, i):
+        print(i.size())
+        embedded= self.embedding(i)
+        print(embedded.size())
+        o,(h,c)= self.lstm(embedded)
+        
+        return h, c
+    
+
+class Decoder(nn.Module):
+      
+    def __init__(self, hidden_size, output_size):
+        
+        super(Decoder, self).__init__()
+        
+        self.hidden_size= hidden_size
+        self.output_size= output_size
+
+        self.embedding= nn.Embedding(self.output_size, self.hidden_size)
+        self.lstm= nn.LSTM(self.hidden_size, self.hidden_size, batch_first= True)
+        self.fc = nn.Linear(self.hidden_size, self.output_size)
+        self.dropout= nn.Dropout(0.2)
+        self.softmax= nn.LogSoftmax(dim= 1)
+        
+    def forward(self, i, h, c):
+        embedded= self.embedding(i)
+        o,(h,c)= self.lstm(embedded, (h, c))
+        o= self.fc(o[0])
+        o= self.dropout(o)
+        o= self.softmax(o)
+        
+        return o, h, c
+        
+        
+
+class Seq2Seq(nn.Module):
+    
+    def __init__(self, encoder_input_size, encoder_hidden_size, decoder_hidden_size, decoder_output_size):
+        
+        super(Seq2Seq, self).__init__()
+        
+        self.input_size= encoder_input_size
+        self.hidden_size= encoder_hidden_size
+        self.output_size= decoder_output_size
+        
+        self.encoder= Encoder(self.input_size, self.hidden_size)
+        self.decoder= Decoder(self.hidden_size, self.output_size)
+    
+    def forward(self, src, trg, teacher_forcing_ratio = 0.5):
+        
+        output_seq= []
+        
+        encoder_hidden, encoder_cell= self.encoder(src)
+        
+        decoder_hidden= encoder_hidden
+        decoder_cell= encoder_cell
+
+        decoder_input= torch.Tensor([[target_vocab.token_to_index("<SOS>")]]).long().to(device)
+        
+        for time_step in range(trg.size(0)):
+            output_token, decoder_hidden, decoder_cell= self.decoder(
+                decoder_input,
+                decoder_hidden,
+                decoder_cell
+            )
+            output_seq.append(output_token)
+            
+            if self.training:
+                if random.random() < teacher_forcing_ratio:
+                    decoder_input= trg[time_step]
+            else:
+                _, top_index= output_token.data.topk(1)
+                decoder_input= top_index.squeeze().detach()
+        
+        return output_seq
+
+
+My quesions is that the Input of Encoder is the soure vocabualry size, which mean that each token in the vocabulary should be converted into one-hot vector before parsing to the Encoder before hand (for example, should a batch has a dimension of (batch_size, seq_len, vocab_size) instead of (batch_size, seq_len)?
+I search others notebook and saw that they just parse a batch of (batch_size, seq_len) into the Encoder and I got confused.
+Any help is appreciated.
+I have tried pass (batch_size, seq_len, vocab_size) and the Embedding layer output dimension is (batch_size, seq_len, vocab_size, embedding_dim), which make me more confused, isn't it should be (batch_size, seq_len, embedding_dim)
+    
+Move data between DBaaS with Azure pipeline
+https://stackoverflow.com/questions/76785346/move-data-between-dbaas-with-azure-pipeline
+
+                
+I need to move data from tst DBaaS to acc DBaaS, DBaaS are not connected as azure resource or something like that.
+Im trying to select some data from DBaaS A and insert it in DBaaS B using Linux Agent.
+I have connections and passwords, user names are valid, i can see selected data in logs.
+But how to make SELECT X FROM A and then INSERT X INTO B?
+pool:
+name: LinuxAgent
+variables:
+
+name: a_name
+value: a_value
+
+name: a_connection
+value: a_connection
+
+name: b_name
+value: b_value
+
+name: b_connection
+value: b_connection
+
+
+stages:
+
+stage: pull
+displayName: Pull data from DBaaS
+jobs:
+
+job: pull
+steps:
+
+task: Bash@3
+displayName: Pull data
+inputs:
+targetType: 'inline'
+script: |
+sqlplus ${{ variables.a_name }}/PASSWORD@'${{ variables.a_connection }}' <<< "select query"
+
+
+
+
+stage: push
+displayName: Push data to DBaaS
+dependsOn:
+
+pull
+condition: succeeded()
+jobs:
+job: push
+steps:
+
+task: Bash@3
+displayName: Push data
+inputs:
+targetType: 'inline'
+script: |
+sqlplus ${{ variables.b_name }}/PASSWORD@'${{ variables.b_connection }}' <<< "insert query"`
+
+
+
+
+
+My pipeline knowledge is pretty poor so beside of log query statement i have no idea how to store it and pass further...please help :)
+    
+when i run this command "firebase deploy --only functions" it show me errors
+https://stackoverflow.com/questions/76785366/when-i-run-this-command-firebase-deploy-only-functions-it-show-me-errors
+
+                
+I want to use Firebase Database as i am developing Amazon Clone , so when i run this command "firebase deploy --only functions" to deploy my backend on firebase but i am getting errors like,
+node:events:491
+throw er; // Unhandled 'error' event
+^
+Error: spawn npm --prefix "%RESOURCE_DIR%" run lint ENOENT
+at ChildProcess._handle.onexit (node:internal/child_process:291:12) {
+
+code: 'ENOENT',
+errno: 'ENOENT',
+syscall: 'spawn npm --prefix "%RESOURCE_DIR%" run lint',
+path: 'npm --prefix "%RESOURCE_DIR%" run lint',
+spawnargs: []
+}
+what should i do,
+i have blaze account also on firebase.
+i have tried to restart firebase server, checked codes but i dont't know what is going wrong
+    
+Why am I getting status code 302 when making this GET request instead of something like 200?
+https://stackoverflow.com/questions/76785359/why-am-i-getting-status-code-302-when-making-this-get-request-instead-of-somethi
+
+                
+I making a GET request to eloquentjavascript.net/20_node.html but it sends back a response with statusCode 302. I was expecting something like 200 but got 302. What does statusCode = 302 mean in this case?
+const {request} = require("http");
+
+let requestStream = request({
+    hostname: "eloquentjavascript.net", 
+    path: "/20_node.html",
+    method: "GET",
+    headers: {Accept: "text/html"}
+}, response => {
+    console.log("Server responded with status code", response.statusCode);
+})
+
+requestStream.end();
+
+    
+How to make default role array dynamic in Fuse React's role authorization system?
+https://stackoverflow.com/questions/76785351/how-to-make-default-role-array-dynamic-in-fuse-reacts-role-authorization-system
+
+                
+We are using Fuse React template in our project. In this template the routes are generated from config files of single routes. When the generation occurs a default role array is embedded to every route. This means that if /dashboard route has a role array like ['admin','staff'] and if the user role is 'user' than this user is not granted access to /dashboard. This route generation is occuring when app first loaded.
+this is where generated routes are used. its imported from the config file below.
+console.log('routes: ', routes);
+const App = () => {
+    return (
+        <AppContext.Provider
+            value={{
+                routes
+            }}>
+            <StylesProvider jss={jss} generateClassName={generateClassName}>
+                <Provider store={store}>
+                    <Auth>
+                        <Router history={history}>
+                            <FuseAuthorization>
+                                <FuseTheme>
+                                    <FuseLayout />
+                                </FuseTheme>
+                            </FuseAuthorization>
+                        </Router>
+                    </Auth>
+                </Provider>
+            </StylesProvider>
+        </AppContext.Provider>
+    );
+};
+
+export default App;
+
+And this is the main config file where all the routes get their auth property embedded in.
+const defaultAuth = ['superadmin', 'admin', 'staff', 'user'];
+
+const routes = [
+     ...FuseUtils.generateRoutesFromConfigs(routeConfigs, defaultAuth), //This method embeds
+    {
+        path: '/',
+        exact: true,
+        auth: '',
+        component: () => <Redirect to="/login" />
+    },
+    {
+        path: '/dashboard',
+        exact: true,
+        auth: '',
+        component: () => <Redirect to="/dashboard" />
+    },
+    {
+        component: () => <Redirect to="/pages/errors/error-404" />
+    }
+];
+
+export default routes;
+
+Problem: When the user logs in I get an Id from token. Then using this Id I get the arrays which shows me which routes granted access to which roles. The problem is that this routes are generated before user logs in and so I cant get an Id. I need to get the user login before route generation and using his/her Id to get role array and generate the routes based on that array. Any ideas how can I achieve this?
+What did I try: I tried to move AppContext.Provider to lower levels and it didn't work of course. I expected to generate routes after authorization but since login component doesn't generated it didn't open at all.
+    
+Button cannot press, no event occur
+https://stackoverflow.com/questions/76785369/button-cannot-press-no-event-occur
+
+                
+I was trying to make buttons for my game project as I followed tutorial from Youtube but when it comes to the button part, mine cannot do as expected.
+I had try to find solutions from other videos and google search but still havent solve my problem yet. I had check as what they said like checking event system, if button is interactable, and  enable raycast hit but none of this becoming my button's problem.
+Buttons:
+
+Button Inspector:
+
+Hierarchy:
+
+Canvas:
+
+    
+Getting an error name"index out of range" while playing around list in python
+https://stackoverflow.com/questions/76785350/getting-an-error-nameindex-out-of-range-while-playing-around-list-in-python
+
+                
+I am a beginner and i am playing around list where i have seen this error and got stuck can somebody help  me with that? please tell me the reason and tell me about the solution.
+row1=["😔", "😔", "😔"]
+row2=["😔", "😔", "😔"]
+row3=["😔", "😔", "😔"]
+map=[row1+row2+row3]
+print(f"{row1}\n{row2}\n{row3}\n")
+postion=input("where to you want to put the tresures")
+row=int(postion[0])
+column=int(postion[1])
+map[row-1][column-1]="x"
+print(f"{row1}\n{row2}\n{row3}\n")
+
+output
+ ['😔', '😔', '😔']
+ ['😔', '😔', '😔']
+ ['😔', '😔', '😔']
+
+where to you want to put the tresures23
+Traceback (most recent call last):
+File "main.py", line 9, in <module>
+map[row-1][column-1]="x"
+IndexError: list index out of range
+
+    
+HostNameProp and PortProp is no longer present in KafkaConfig class from package kafka.server
+https://stackoverflow.com/questions/76785370/hostnameprop-and-portprop-is-no-longer-present-in-kafkaconfig-class-from-package
+
+                
+HostNameProp and PortProp is no longer present in  KafkaConfig class from package kafka.server .
+The version of Kafka_2.12 is 3.4.0 .Please help me with alterntive properties
+    
+Firefox not loading all cookies from cookies.sqlite saved in profile directory
+https://stackoverflow.com/questions/76785373/firefox-not-loading-all-cookies-from-cookies-sqlite-saved-in-profile-directory
+
+                
+I opened Firefox browser instance using selenium using gecko driver. All the cookies are first saved into a custom profile directory in the cookies.sqlite table. When looking over the table, there are specifically two cookie names:
+a. 1031b8c41dfff97a311a7ac99863bdc5_username and
+b. 1031b8c41dfff97a311a7ac99863bdc5_identity
+Every other option is same for both of the cookies. Like expiry, httpOnly option etc. But why is the browser loading 1031b8c41dfff97a311a7ac99863bdc5_username and not 1031b8c41dfff97a311a7ac99863bdc5_identity? What determines to load or not load the cookie saved in cookies.sqlite?
+    
+Jmeter regular exp extractor for xml
+https://stackoverflow.com/questions/76785375/jmeter-regular-exp-extractor-for-xml
+
+                
+I have the below message in the response and i would like to capture activity-name, old-val and new-val. Can someone please help me what is the best way to capture?
+response message: I have multiple blocks as shown below, i have mentioned only one block here.
+<tr>
+                <td width="20%" class="activity-name">
+                                    Programs Written/Modified
+                                </td>
+                <td width="40%" class="activity-old-val">
+                                                </td>
+                <td width="40%" class="activity-new-val">
+                                                            <b>New:</b>
+                                                                   buildrate.p
+                                                                    </td>
+                </tr>
+
+    
