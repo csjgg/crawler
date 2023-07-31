@@ -6,7 +6,7 @@ authors = ["崔顺杰 <11680384+cui-shunjie12@user.noreply.gitee.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 scrapy = "^2.9.0"
 
 
