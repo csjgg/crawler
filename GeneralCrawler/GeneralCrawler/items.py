@@ -6,11 +6,7 @@
 import scrapy
 
 
-class StackoverflowItem(scrapy.Item):
+class GeneralcrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    question = scrapy.Field()
-    url = scrapy.Field()
-    detail = scrapy.Field()
-    
     pass

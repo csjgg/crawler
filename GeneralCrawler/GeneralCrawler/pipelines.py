@@ -8,10 +8,6 @@
 from itemadapter import ItemAdapter
 
 
-class StackoverflowPipeline:
+class GeneralcrawlerPipeline:
     def process_item(self, item, spider):
-        with open("stackoverflow.txt", "a", encoding="utf-8") as f:
-            f.write(item["question"] + "\n")
-            f.write(item["url"] + "\n")
-            f.write(item["detail"] + "\n")
         return item

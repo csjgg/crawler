@@ -1,4 +1,4 @@
-# Scrapy settings for StackOverflow project
+# Scrapy settings for GeneralCrawler project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,15 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "StackOverflow"
+BOT_NAME = "GeneralCrawler"
 
-SPIDER_MODULES = ["StackOverflow.spiders"]
-NEWSPIDER_MODULE = "StackOverflow.spiders"
-LOG_LEVEL = "ERROR"
+SPIDER_MODULES = ["GeneralCrawler.spiders"]
+NEWSPIDER_MODULE = "GeneralCrawler.spiders"
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+# using the google UA
+USER_AGENT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -45,13 +46,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "StackOverflow.middlewares.StackoverflowSpiderMiddleware": 543,
+#    "GeneralCrawler.middlewares.GeneralcrawlerSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "StackOverflow.middlewares.StackoverflowDownloaderMiddleware": 543,
+#    "GeneralCrawler.middlewares.GeneralcrawlerDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +64,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "StackOverflow.pipelines.StackoverflowPipeline": 300,
+   "GeneralCrawler.pipelines.GeneralcrawlerPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

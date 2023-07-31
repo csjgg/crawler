@@ -2,7 +2,7 @@
 name = "crawler"
 version = "0.1.0"
 description = ""
-authors = ["cuishunjie <cuishunj@gmail.com>"]
+authors = ["崔顺杰 <11680384+cui-shunjie12@user.noreply.gitee.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
