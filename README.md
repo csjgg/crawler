@@ -12,9 +12,9 @@ project is still in writing(1%)
 
 ```shell
 # install the poetry
+# make sure using python3.10 or up
 pip install poetry
 # install dependencies
-poetry shell
 poetry install
 poetry lock
 ```
