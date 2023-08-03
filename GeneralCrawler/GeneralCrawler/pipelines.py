@@ -10,11 +10,13 @@ from itemadapter import ItemAdapter
 
 class GeneralcrawlerPipeline:
     def process_item(self, item, spider):
-        path = './Filebase/'+item['title']+'/source.html'
-        fp = open(path, 'a', encoding='utf-8')
-        fp.write(item['html'])
-        fp.close()
-        fp2 = open('./Filebase/'+item['title']+'/url.txt', 'a', encoding='utf-8')
-        fp2.write(path+'\n'+item['url']+'\n')
-        fp2.close()
+        path = './Filebase/'+str(item['id'])+'.html'
+        print(item['id'])
+        with open(path, 'w', encoding='utf-8') as fp:
+            fp.write(item['html'])
+        # with open('./urls.txt', 'w', encoding='utf-8') as fp:
+        #     for url in item['relevent_urls']:
+        #         fp.write(url+'\n')
+        # 要提交的： 将 path item['title'] item['url'] 上传到数据库id下 ////// 将 item['relevent_urls'] 上传并自动生成id
+        
         return item

@@ -12,10 +12,11 @@ BOT_NAME = "GeneralCrawler"
 SPIDER_MODULES = ["GeneralCrawler.spiders"]
 NEWSPIDER_MODULE = "GeneralCrawler.spiders"
 
-
+LOG_LEVEL = 'ERROR'
+LOG_ENABLED = False
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # using the google UA
-USER_AGENT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
