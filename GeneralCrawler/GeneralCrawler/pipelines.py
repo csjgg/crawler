@@ -23,7 +23,7 @@ class GeneralcrawlerPipeline:
             print("connect to database failed.")
             exit(1)
         else:
-            print("connect to database successfully.")
+            print("Going to store in database.")
         cursor = conn.cursor()
         insert_query = "INSERT INTO data (path, url, title) VALUES (%s, %s, %s)"
         select_query = "SELECT * FROM data WHERE url = %s"
@@ -33,13 +33,12 @@ class GeneralcrawlerPipeline:
         fp = open(path, 'w',encoding='utf-8')
         if fp:
             fp.write(item['html'])
+            print("Save new file in local")
             fp.close()
         else:
             print("open file failed.")
-        print("zheli")
         # save the path item['title'] item['url'] to database
         cursor.execute(select_query, (item['url']))
-        print("在进行中")
         if cursor.fetchone():
             print("data already exists.")
             cursor.close()

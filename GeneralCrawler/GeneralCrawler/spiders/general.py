@@ -48,6 +48,7 @@ class GeneralSpider(scrapy.Spider):
                 if cursor.fetchone():
                     continue
                 else:
+                    print("Send New Request")
                     yield scrapy.Request(url, callback=self.parse)
         cursor.close()
         conn.close()
