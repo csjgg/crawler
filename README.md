@@ -1,6 +1,8 @@
 
 ## Description
 
+I also encountered many problems in the process of writing the program, but after I finished writing, I found that this project is actually very simple. However, it can always be used as a learning material or directly used.
+
 A crawler that can start from a specified url and send requests to all urls it encounters.
 
 Then store the file(html or text) locally, also store the relative path and url related information into the database
