@@ -12,7 +12,6 @@ class GeneralcrawlerItem(scrapy.Item):
     id = scrapy.Field()
     url = scrapy.Field()
     html = scrapy.Field()
-    text = scrapy.Field()
+    # text = scrapy.Field()
     title = scrapy.Field()
-    relevent_urls = scrapy.Field()
 

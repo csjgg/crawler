@@ -15,11 +15,17 @@ NEWSPIDER_MODULE = "GeneralCrawler.spiders"
 LOG_LEVEL = 'ERROR'
 LOG_ENABLED = False
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# using the google UA
+# using my own user agent
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
+
+
+RETRY_ENABLED = True
+RETRY_TIMES = 3  
+RETRY_HTTP_CODES = [500, 502, 503, 504, 522, 524, 408]
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

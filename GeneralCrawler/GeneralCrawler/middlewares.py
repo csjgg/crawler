@@ -80,14 +80,10 @@ class GeneralcrawlerDownloaderMiddleware:
         #   installed downloader middleware will be called
         return None
 
+    
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
         if response.status == 404:
-            # 在这里处理404错误，例如将错误信息写入数据库
-            error_message = f"URL '{request.url}' returned a 404 status code."
-            # 假设将错误信息写入数据库的代码为：write_to_database(error_message)
-            write_to_database(error_message)
-        elif response.status == 500:
             pass
         # Must either;
         # - return a Response object
