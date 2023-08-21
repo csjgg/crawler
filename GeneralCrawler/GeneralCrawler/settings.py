@@ -12,15 +12,23 @@ BOT_NAME = "GeneralCrawler"
 SPIDER_MODULES = ["GeneralCrawler.spiders"]
 NEWSPIDER_MODULE = "GeneralCrawler.spiders"
 
-LOG_LEVEL = 'ERROR'
+STATS_ENABLED = True
+LOG_LEVEL = 'DEBUG'
 LOG_ENABLED = False
+
+AUTOTHROTTLE_ENABLED = True
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # using my own user agent
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+# USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
+
+CONCURRENT_REQUESTS = 100
+COOKIES_ENABLED = False
+DOWNLOAD_TIMEOUT = 10
 
 RETRY_ENABLED = True
 RETRY_TIMES = 3  
@@ -60,6 +68,7 @@ RETRY_HTTP_CODES = [500, 502, 503, 504, 522, 524, 408]
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    "GeneralCrawler.middlewares.GeneralcrawlerDownloaderMiddleware": 543,
+   'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
 }
 
 # Enable or disable extensions

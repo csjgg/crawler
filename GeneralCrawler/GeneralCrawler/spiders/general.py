@@ -1,28 +1,17 @@
 import scrapy
 # from bs4 import BeautifulSoup
 from GeneralCrawler.items import GeneralcrawlerItem
-from pymysql import Connection
+from GeneralCrawler.database import DatabaseConnection
 
 
 class GeneralSpider(scrapy.Spider):
     name = "general"
-    start_urls = ["https://jyywiki.cn/OS/2022/"]
+    start_urls = ["https://medium.com/"]
+    status_code_count = {}
     
-    def connect_to_database(self):
-        conn = Connection(
-            host='localhost',
-            port=3306,
-            user = 'root',
-            password = '123456',
-            database='test_crawler',
-        )
-        if not conn:
-            print("connect to database failed.")
-            exit(1)
-        else:
-            print("connect to database successfully.")
-            return conn
-    
+    def __init__(self): 
+        self.db_connection = DatabaseConnection()
+        self.connection = self.db_connection.get_connection()
     
     def parse(self, response):
         # get all needed data from the response
@@ -38,9 +27,10 @@ class GeneralSpider(scrapy.Spider):
         # deal with urls
         absolute_urls = [response.urljoin(url) for url in urls]
         vistied_urls = [] 
-        conn = self.connect_to_database()
-        select_query = "SELECT * FROM data WHERE url = %s"
-        cursor = conn.cursor()   
+        conn = self.connection
+        select_query = "SELECT * FROM data WHERE url = %s"  
+        cursor = conn.cursor()
+        # print("sending new requests")  
         for url in absolute_urls:
             if url not in vistied_urls:
                 vistied_urls.append(url)
@@ -48,10 +38,8 @@ class GeneralSpider(scrapy.Spider):
                 if cursor.fetchone():
                     continue
                 else:
-                    print("Send New Request")
                     yield scrapy.Request(url, callback=self.parse)
         cursor.close()
-        conn.close()
         
         # create a new item
         item = GeneralcrawlerItem()
@@ -60,5 +48,5 @@ class GeneralSpider(scrapy.Spider):
         item['html'] = html_code
         item['title'] = title
         yield item
-
+    
 

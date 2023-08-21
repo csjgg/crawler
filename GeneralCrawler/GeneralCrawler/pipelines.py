@@ -6,47 +6,46 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from pymysql import Connection
+from GeneralCrawler.database import DatabaseConnection
+import time 
 
 class GeneralcrawlerPipeline:
+    
+    def __init__(self):
+        self.db_connection = DatabaseConnection()
+        self.connection = self.db_connection.get_connection()
+        
+        
     def process_item(self, item, spider):
         # deal with the database
-        conn = Connection(
-            host='localhost',
-            port=3306,
-            user = 'root',
-            password = '123456',
-            database='test_crawler',
-        )
-        table_name = 'data'
-        if not conn:
-            print("connect to database failed.")
-            exit(1)
-        else:
-            print("Going to store in database.")
+        conn = self.connection
+        # print("database connected.")
         cursor = conn.cursor()
         insert_query = "INSERT INTO data (path, url, title) VALUES (%s, %s, %s)"
         select_query = "SELECT * FROM data WHERE url = %s"
         
         # store data in the local file system
         path = './Filebase/'+str(item['title'])+'.html'
-        fp = open(path, 'w',encoding='utf-8')
-        if fp:
-            fp.write(item['html'])
-            print("Save new file in local")
-            fp.close()
-        else:
-            print("open file failed.")
+        # fp = open(path, 'w',encoding='utf-8')
+        # if fp:
+        #     fp.write(item['html'])
+        #     print("Save new file in local")
+        #     fp.close()
+        # else:
+        #     print("open file failed.")
         # save the path item['title'] item['url'] to database
         cursor.execute(select_query, (item['url']))
         if cursor.fetchone():
-            print("data already exists.")
+            # print("data already exists.")
             cursor.close()
-            conn.close()
         else:
             cursor.execute(insert_query, (path, item['url'], item['title']))
+            # print(f"select time: {select_time-fist_time}")
+            # print(f"insert time: {insert_time-select_time}")
             conn.commit()
             cursor.close()
-            conn.close()
-            print("save data to database successfully.")
+            # print("save data to database successfully.")
         return item
+    
+    def close_spider(self, spider):
+        self.connection.close()

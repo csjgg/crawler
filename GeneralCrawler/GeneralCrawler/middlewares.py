@@ -4,7 +4,6 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
@@ -80,11 +79,17 @@ class GeneralcrawlerDownloaderMiddleware:
         #   installed downloader middleware will be called
         return None
 
-    
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
-        if response.status == 404:
-            pass
+        # db_connection = DatabaseConnection()
+        # conn = db_connection.get_connection()
+        # cursor = conn.cursor()
+        # insert_query = "INSERT INTO data_test (status_code) VALUES (%s)"
+        # status_code = response.status
+        # cursor.execute(insert_query, (status_code,))
+        # cursor.close()
+        # conn.commit()
+        # print(response.status)
         # Must either;
         # - return a Response object
         # - return a Request object
