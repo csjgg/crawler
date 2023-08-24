@@ -40,11 +40,9 @@ class GeneralcrawlerPipeline:
             cursor.close()
         else:
             cursor.execute(insert_query, (path, item['url'], item['title']))
-            # print(f"select time: {select_time-fist_time}")
-            # print(f"insert time: {insert_time-select_time}")
             conn.commit()
             cursor.close()
-            # print("save data to database successfully.")
+            print("save data to database successfully.")
         return item
     
     def close_spider(self, spider):

@@ -7,13 +7,19 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+SELENIUM_DRIVER_NAME = 'chrome'
+# SELENIUM_DRIVER_ARGUMENTS=['--headless']  
+
+
+
+
 BOT_NAME = "GeneralCrawler"
 
 SPIDER_MODULES = ["GeneralCrawler.spiders"]
 NEWSPIDER_MODULE = "GeneralCrawler.spiders"
 
 STATS_ENABLED = True
-LOG_LEVEL = 'DEBUG'
+LOG_LEVEL = 'ERROR'
 LOG_ENABLED = False
 
 AUTOTHROTTLE_ENABLED = True
@@ -23,7 +29,7 @@ AUTOTHROTTLE_ENABLED = True
 # USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 
 CONCURRENT_REQUESTS = 100
@@ -69,6 +75,7 @@ RETRY_HTTP_CODES = [500, 502, 503, 504, 522, 524, 408]
 DOWNLOADER_MIDDLEWARES = {
    "GeneralCrawler.middlewares.GeneralcrawlerDownloaderMiddleware": 543,
    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+   'scrapy_selenium.SeleniumMiddleware': 800
 }
 
 # Enable or disable extensions

@@ -6,7 +6,7 @@
 from scrapy import signals
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
-
+from GeneralCrawler.database import DatabaseConnection
 
 class GeneralcrawlerSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
@@ -81,14 +81,15 @@ class GeneralcrawlerDownloaderMiddleware:
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
-        # db_connection = DatabaseConnection()
-        # conn = db_connection.get_connection()
-        # cursor = conn.cursor()
-        # insert_query = "INSERT INTO data_test (status_code) VALUES (%s)"
-        # status_code = response.status
-        # cursor.execute(insert_query, (status_code,))
-        # cursor.close()
-        # conn.commit()
+        db_connection = DatabaseConnection()
+        conn = db_connection.get_connection()
+        cursor = conn.cursor()
+        url = request.url
+        insert_query = "INSERT INTO data_test (status_code, url) VALUES (%s, %s)"
+        status_code = response.status
+        cursor.execute(insert_query, (status_code,url))
+        cursor.close()
+        conn.commit()
         # print(response.status)
         # Must either;
         # - return a Response object
